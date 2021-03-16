@@ -23,6 +23,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.preference.PreferenceManager;
 
+//import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.google.android.material.shadow.ShadowDrawableWrapper;
 
 
@@ -30,17 +32,30 @@ public class Text_Content_Activity extends AppCompatActivity {
     private int category=0;
     private int position=0;
     private final int [] array_fish={R.string.fish_1,R.string.fish_2,R.string.fish_3,R.string.fish_4,R.string.fish_5};
-    private final int [] array_image_fish={R.drawable.karp,R.drawable.shuka,R.drawable.osetr,R.drawable.nalim,R.drawable.som};
+    public final int [] array_image_fish={R.drawable.karp,R.drawable.shuka,R.drawable.osetr,R.drawable.nalim,R.drawable.som};
     private final String [] array_title_fish={"Карп","Щука","Осетр","Налим","Сом"};
     private final int [] array_na={R.string.na_1,R.string.na_2,R.string.na_3,R.string.na_4};
-    private final int [] array_image_na={R.drawable.chervak,R.drawable.kukuruza,R.drawable.xleb,R.drawable.ris};
+    public final int [] array_image_na={R.drawable.chervak,R.drawable.kukuruza,R.drawable.xleb,R.drawable.ris};
     private final String [] array_title_na={"Червяк","Кукуруза","Хлеб","Рис"};
     private final int [] array_sna={R.string.sna_1,R.string.sna_2,R.string.sna_3,R.string.sna_4};
-    private final int [] array_image_sna={R.drawable.gruzila,R.drawable.kruchki,R.drawable.leska,R.drawable.blesna};
+    public final int [] array_image_sna={R.drawable.gruzila,R.drawable.kruchki,R.drawable.leska,R.drawable.blesna};
     private final String [] array_title_sna={"Грузила","Крючки","Леска","Блесна"};
     private TextView content_ofstuff;
     private ImageView iContent;
     private ActionBar actionBar;
+
+    public int[] getArray_image_fish() {
+        return array_image_fish;
+    }
+
+    public int[] getArray_image_na() {
+        return array_image_na;
+    }
+
+    public int[] getArray_image_sna() {
+        return array_image_sna;
+    }
+
     private SharedPreferences def_pref;
 
     @Override
@@ -107,7 +122,7 @@ public class Text_Content_Activity extends AppCompatActivity {
         if(bel_chor){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
-            
+
         }else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 

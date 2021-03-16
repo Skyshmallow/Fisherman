@@ -10,4 +10,6 @@
     <color name="gray">#151515</color>
     <color name="fortext">#FFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="yellow">#FFD600</color>
+    <color name="green">#00C853</color>
 </resources>

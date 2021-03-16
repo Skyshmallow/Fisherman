@@ -7,6 +7,13 @@
         <item>Налим</item>
         <item>Сом</item>
     </string-array>
+    <string-array name="fish_array_2">
+        <item>Carp</item>
+        <item>Pike</item>
+        <item>Sturgeon</item>
+        <item>Burbot</item>
+        <item>Catfish</item>
+    </string-array>
 
     <string-array name="nazhivka_array">
         <item>Червяк</item>
@@ -14,12 +21,24 @@
         <item>Хлеб</item>
         <item>Рис</item>
     </string-array>
+    <string-array name="nazhivka_array_2">
+        <item>Worm</item>
+        <item>Corn</item>
+        <item>Bread</item>
+        <item>Rice</item>
+    </string-array>
 
     <string-array name="snasti_array">
         <item>Грузила</item>
         <item>Крючки</item>
         <item>Леска</item>
         <item>Блесна</item>
+    </string-array>
+    <string-array name="snasti_array_2">
+        <item>Sinkers</item>
+        <item>Hooks</item>
+        <item>Fishing line</item>
+        <item>Spoon</item>
     </string-array>
     <string-array name="main_text_size">
         <item>Большой</item>

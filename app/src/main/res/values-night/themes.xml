@@ -14,5 +14,6 @@
         <item name="textAppearanceBody1">@color/white</item>
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
+
     </style>
 </resources>

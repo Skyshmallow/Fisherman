@@ -26,6 +26,7 @@ import java.util.Set;
 public class SettingsActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private SharedPreferences def_pref;
+
     @SuppressLint("CommitTransaction")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onBackPressed();
         tochnobelilchor();
     }
-    public void tochnobelilchor(){
+    public void  tochnobelilchor(){
         def_pref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean bel=def_pref.getBoolean("darky_key",false);
         if(bel){

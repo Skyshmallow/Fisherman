@@ -1,5 +1,6 @@
 package com.example.fisherman;
 
+import android.app.LauncherActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fisherman.settings.SettingsActivity;
+import com.example.fisherman.utils.CustomArrayAdapter;
+import com.example.fisherman.utils.ListItemClass;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -29,19 +32,24 @@ import androidx.preference.PreferenceManager;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 private ListView list;
-private  String[] array;
-private ArrayAdapter<String> adapter;
+private  String[] array,arraySecName;
+private CustomArrayAdapter adapter;
 private Toolbar toolbar;
 private int category_index;
+private Text_Content_Activity text_content_activity = new Text_Content_Activity();
+private int[] array_fish_color=text_content_activity.array_image_fish;
 private SharedPreferences def_pref;
 private TextView textTest;
 private String samStringText;
 private int vposition;
 private int vcategory;
+private List<ListItemClass> lisItemMain;
+private ListItemClass listItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,17 @@ private int vcategory;
         textTest=findViewById(R.id.prostTesxt);
         list=findViewById(R.id.listView);
         array = getResources().getStringArray(R.array.fish_array);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,new ArrayList<String>(Arrays.asList(array)));
+        arraySecName = getResources().getStringArray(R.array.fish_array_2);
+        lisItemMain = new ArrayList<>();
+
+        for (int i=0;i<array.length;i++){
+            listItem = new ListItemClass();
+            listItem.setNamef(array[i]);
+            listItem.setSecond_name(arraySecName[i]);
+            listItem.setImgId(array_fish_color[i]);
+            lisItemMain.add(listItem);
+        }
+        adapter = new CustomArrayAdapter(this,R.layout.list_view_item_1,lisItemMain,getLayoutInflater());
         list.setAdapter(adapter);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -137,72 +155,74 @@ private int vcategory;
         boolean prodolzhit=false;
         //category 0 FISH
         //ДЛЯ ГОЛОСОВОЙ ШТУКИ.Мол чото говоришь а он сразу выдает тебе это.ПРИКОЛЬНО ДА
-        if(samStringText.equals("карп")){
-           vposition=0;
-           vcategory=0;
-           prodolzhit=true;
-        }
-        if(samStringText.equals("щука")||samStringText.equals("чука")){
-            vposition=1;
-            vcategory=0;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("осётр")||samStringText.equals("осетр")){
-            vposition=2;
-            vcategory=0;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("налим")){
-            vposition=3;
-            vcategory=0;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("сом")||samStringText.equals("Том")||samStringText.equals("дом")){
-            vposition=4;
-            vcategory=0;
-            prodolzhit=true;
-        }
-        //category 1 NAZHIVKA
-        if(samStringText.equals("червяк")||samStringText.equals("червяк червяк")||samStringText.equals("червяк червяк червяк")){
-            vposition=0;
-            vcategory=1;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("кукуруза")||samStringText.equals("кукуруза кукуруза")||samStringText.equals("кукуруза кукуруза кукуруза")){
-            vposition=1;
-            vcategory=1;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("хлеб")||samStringText.equals("цепь")||samStringText.equals("хлеб хлеб")){
-            vposition=2;
-            vcategory=1;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("рис")||samStringText.equals("из")||samStringText.equals("приз")){
-            vposition=3;
-            vcategory=1;
-            prodolzhit=true;
-        }
-        //category 2 SNASTI
-        if(samStringText.equals("взяла")||samStringText.equals("грузило")||samStringText.equals("Mozilla")||samStringText.equals("Как дела")){
-            vposition=0;
-            vcategory=2;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("крючки")||samStringText.equals("крючки крючки")||samStringText.equals("очки")||samStringText.equals("мишки")||samStringText.equals("девочки")||samStringText.equals("ручки")||samStringText.equals("дочки")){
-            vposition=1;
-            vcategory=2;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("леска")||samStringText.equals("леска леска")||samStringText.equals("Паскаль")||samStringText.equals("резка")||samStringText.equals("ЦСКА")){
-            vposition=2;
-            vcategory=2;
-            prodolzhit=true;
-        }
-        if(samStringText.equals("блесна")||samStringText.equals("блесна блесна")||samStringText.equals("Ясно")||samStringText.equals("весна")||samStringText.equals("песня")){
-            vposition=3;
-            vcategory=2;
-            prodolzhit=true;
+        if (samStringText!=null) {
+            if (samStringText.equals("карп")) {
+                vposition = 0;
+                vcategory = 0;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("щука") || samStringText.equals("чука")) {
+                vposition = 1;
+                vcategory = 0;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("осётр") || samStringText.equals("осетр")) {
+                vposition = 2;
+                vcategory = 0;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("налим")) {
+                vposition = 3;
+                vcategory = 0;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("сом") || samStringText.equals("Том") || samStringText.equals("дом")) {
+                vposition = 4;
+                vcategory = 0;
+                prodolzhit = true;
+            }
+            //category 1 NAZHIVKA
+            if (samStringText.equals("червяк") || samStringText.equals("червяк червяк") || samStringText.equals("червяк червяк червяк")) {
+                vposition = 0;
+                vcategory = 1;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("кукуруза") || samStringText.equals("кукуруза кукуруза") || samStringText.equals("кукуруза кукуруза кукуруза")) {
+                vposition = 1;
+                vcategory = 1;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("хлеб") || samStringText.equals("цепь") || samStringText.equals("хлеб хлеб")) {
+                vposition = 2;
+                vcategory = 1;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("рис") || samStringText.equals("из") || samStringText.equals("приз")) {
+                vposition = 3;
+                vcategory = 1;
+                prodolzhit = true;
+            }
+            //category 2 SNASTI
+            if (samStringText.equals("взяла") || samStringText.equals("грузило") || samStringText.equals("Mozilla") || samStringText.equals("Как дела")) {
+                vposition = 0;
+                vcategory = 2;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("крючки") || samStringText.equals("крючки крючки") || samStringText.equals("очки") || samStringText.equals("мишки") || samStringText.equals("девочки") || samStringText.equals("ручки") || samStringText.equals("дочки")) {
+                vposition = 1;
+                vcategory = 2;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("леска") || samStringText.equals("леска леска") || samStringText.equals("Паскаль") || samStringText.equals("резка") || samStringText.equals("ЦСКА")) {
+                vposition = 2;
+                vcategory = 2;
+                prodolzhit = true;
+            }
+            if (samStringText.equals("блесна") || samStringText.equals("блесна блесна") || samStringText.equals("Ясно") || samStringText.equals("весна") || samStringText.equals("песня")) {
+                vposition = 3;
+                vcategory = 2;
+                prodolzhit = true;
+            }
         }
         if(prodolzhit)
         {
@@ -248,21 +268,29 @@ private int vcategory;
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if(id == R.id.nav_fish){
-            array_filler(id = R.string.fish,R.array.fish_array,0);
+            array_filler(R.string.fish,getResources().getStringArray(R.array.fish_array),getResources().getStringArray(R.array.fish_array_2),array_fish_color,0);
         }
         else if (id == R.id.nav_na){
-            array_filler(id = R.string.na,R.array.nazhivka_array,1);
+            array_filler(R.string.na,getResources().getStringArray(R.array.nazhivka_array),getResources().getStringArray(R.array.nazhivka_array_2),text_content_activity.array_image_na,1);
+
         }
         else if (id== R.id.nav_sna){
-            array_filler(id = R.string.sna,R.array.snasti_array,2);
+            array_filler(R.string.sna,getResources().getStringArray(R.array.snasti_array),getResources().getStringArray(R.array.snasti_array_2),text_content_activity.array_image_sna,2);
         }
         return true;
     }
-    private void array_filler(int title,int arrayList,int index){
+    //Эта функция заполняет КастомныйАрай их именами картинками и второстепенным именами
+    private void array_filler(int title,String[] nameArray,String[] secName,int[] image,int index){
         toolbar.setTitle(title);
-        array = getResources().getStringArray(arrayList);
+
         adapter.clear();
-        adapter.addAll(array);
+        for (int i=0;i<nameArray.length;i++){
+            listItem = new ListItemClass();
+            listItem.setNamef(nameArray[i]);
+            listItem.setSecond_name(secName[i]);
+            listItem.setImgId(image[i]);
+            lisItemMain.add(listItem);
+        }
         adapter.notifyDataSetChanged();
         category_index=index;
     }
