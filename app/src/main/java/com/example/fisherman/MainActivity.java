@@ -293,5 +293,6 @@ private ListItemClass listItem;
         }
         adapter.notifyDataSetChanged();
         category_index=index;
+        //adawdewqwdqwqwdqwd
     }
 }
